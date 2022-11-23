@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  appointment_id: 
+  user_contact_id: 
+
+two:
+  id: 
+  appointment_id: 
+  user_contact_id: 
