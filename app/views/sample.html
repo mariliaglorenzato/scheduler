@@ -1,0 +1,39 @@
+<div class="jumbotron">
+    <div class="container">
+        <h1>Want to Learn About Sharks?</h1>
+        <p>Are you ready to learn about sharks?</p>
+        <br>
+        <p>
+        </p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <h3>Not all sharks are alike</h3>
+            <p>Though some are dangerous, sharks generally do not attack humans. Out of the 500 species known to
+                researchers, only 30 have been known to attack humans.
+            </p>
+        </div>
+        <div class="col-lg-6">
+            <h3>Sharks are ancient</h3>
+            <p>There is evidence to suggest that sharks lived up to 400 million years ago.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <h1>Compromissos</h1>
+        <ul>
+            <% @appointments.each do |appointment| %>
+            <li>
+                <p><%= appointment.title %></p>
+                <p><%= appointment.description %></p>
+            </li>
+            <% end %>
+        </ul>
+
+    </div>
+</div>

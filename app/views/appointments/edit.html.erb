@@ -1,0 +1,61 @@
+<div class="container">
+    <br>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Appointments</h1>
+            <%= link_to "New Appointment", new_appointment_path %>
+        </div>
+    </div>
+    <%= link_to "<< back", :back %>
+
+    <h2>Edit</h2>
+
+    <%= form_for([@resource, @appointment]) do |f| %>
+    <% if @appointment.errors.any? %>
+    <ul>
+        <% @appointment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+    <% end %>
+
+    <div class="field">
+        <%= f.label :title %><br />
+        <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+    </div>
+
+    <div class="field">
+        <%= f.label :description %><br />
+        <%= f.text_area :description, autofocus: true, autocomplete: "description" %>
+    </div>
+
+    <div class="field">
+        <%= f.label :start_date %><br />
+        <%= f.datetime_field :start_date, autofocus: true, autocomplete: "start_date" %>
+    </div>
+
+    <div class="field">
+        <%= f.label :end_date %><br />
+        <%= f.datetime_field :end_date, autofocus: true, autocomplete: "end_date" %>
+    </div>
+
+    <div class="field">
+        <%= f.fields_for :appointment_guests, @appointment.appointment_guests.build do |t| %>
+        <%= t.label :email %><br />
+        <%= t.text_field :email, list: "appointment_guests_autocomplete" %>
+        <datalist id="appointment_guests_autocomplete">
+            <% @appointment.appointment_guests.each do |guest| %>
+            <option value="<%= guest.email %>"></option>
+            <% end %>
+        </datalist>
+        <br>
+
+        <% end %>
+    </div>
+
+    <div class="actions">
+        <br />
+        <%= f.submit "save", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+</div>

@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  simple_calendar: 
+    previous: "previous <<"
+    next: "next >>"
+pt: 
+  simple_calendar: 
+    previous: "anterior <<"
+    next: "próximo >>"

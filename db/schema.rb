@@ -10,33 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_22_231206) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_19_121206) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointment_guests", force: :cascade do |t|
     t.bigint "appointment_id"
-    t.bigint "user_contact_id"
+    t.string "email", null: false
+    t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["appointment_id"], name: "index_appointment_guests_on_appointment_id"
   end
 
   create_table "appointments", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "title"
     t.text "description"
     t.string "locale"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.bigint "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_contact_groups", force: :cascade do |t|
+    t.integer "user_contact_id", null: false
+    t.integer "group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "user_contacts", force: :cascade do |t|
-    t.bigint "contact_id"
-    t.bigint "owner_id"
+    t.bigint "user_id"
+    t.string "email", null: false
+    t.string "phone_number"
+    t.string "name", null: false
+    t.datetime "birth_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_contacts_on_user_id"
   end
 
   create_table "user_types", force: :cascade do |t|
@@ -47,16 +67,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_231206) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "taxpayer_registry"
+    t.string "email", null: false
+    t.string "taxpayer_registry", null: false
     t.datetime "birth_date"
     t.string "address"
-    t.string "streetNumber"
-    t.string "phone"
-    t.string "email"
-    t.string "name"
-    t.string "encrypted_password"
+    t.string "street_number"
+    t.string "phone_number"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "encrypted_password", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

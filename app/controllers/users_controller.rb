@@ -5,9 +5,6 @@ class UsersController < ApplicationController
 
   def show 
     @user = User.find(params[:id])
-
-    response_to do |format|
-
   end
 
   def create

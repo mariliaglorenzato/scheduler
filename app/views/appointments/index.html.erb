@@ -1,2 +1,22 @@
-<h1>Appointments#index</h1>
-<p>Find me in app/views/appointments/index.html.erb</p>
+<div class="container">
+    <br>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Appointments</h1>
+            <%= link_to "New Appointment", new_appointment_path %>
+        </div>
+    </div>
+
+    <%= month_calendar events: @appointments do |date, appointments| %>
+    <small class="top"><i><%= date %></small></i>
+    <div class="appointment-div">
+
+        <% appointments.each do |appointment| %>
+        <div>
+            <%= link_to appointment.title, edit_appointment_path(appointment) %>
+        </div>
+        <% end %>
+        <% end %>
+    </div>
+</div>
+<br>

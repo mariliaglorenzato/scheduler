@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
-
-  resources :users, only: [:index, :show, :update, :create, :delete]
+  devise_for :users, controllers: { registrations: "users/registrations" }
   
-  resources :appointments, only: [:index, :show, :update, :create, :delete]
+  resources :users, only: [:index, :show, :update, :create, :delete]
+  resources :user_contacts, only: [:index, :show, :new, :edit, :save, :update, :create, :delete], :path => "contacts"
+  resources :appointments, only: [:index, :show, :new, :edit, :save, :update, :create, :delete]
+
+  # resources :sessions, only: [:destroy]
+
+  root "home#index"  
 end
