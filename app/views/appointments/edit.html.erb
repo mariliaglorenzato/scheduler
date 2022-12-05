@@ -11,46 +11,39 @@
     <h2>Edit</h2>
 
     <%= form_for([@resource, @appointment]) do |f| %>
-    <% if @appointment.errors.any? %>
-    <ul>
-        <% @appointment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-    </ul>
+    <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
     <% end %>
-
-    <div class="field">
+    <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <div class="form-group field">
         <%= f.label :title %><br />
         <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
     </div>
 
-    <div class="field">
+    <div class="form-group field">
         <%= f.label :description %><br />
         <%= f.text_area :description, autofocus: true, autocomplete: "description" %>
     </div>
 
-    <div class="field">
+    <div class="form-group field">
         <%= f.label :start_date %><br />
         <%= f.datetime_field :start_date, autofocus: true, autocomplete: "start_date" %>
     </div>
 
-    <div class="field">
+    <div class="form-group field">
         <%= f.label :end_date %><br />
         <%= f.datetime_field :end_date, autofocus: true, autocomplete: "end_date" %>
     </div>
 
-    <div class="field">
-        <%= f.fields_for :appointment_guests, @appointment.appointment_guests.build do |t| %>
-        <%= t.label :email %><br />
-        <%= t.text_field :email, list: "appointment_guests_autocomplete" %>
-        <datalist id="appointment_guests_autocomplete">
-            <% @appointment.appointment_guests.each do |guest| %>
-            <option value="<%= guest.email %>"></option>
+    <div class="form-group field">
+        <div class="form-group field">
+            <%= f.fields_for :appointment_guests, @appointment.appointment_guests.build do |t| %>
+            <%= t.label :email %><br>
+            <% collection_select(:appointment_guests, :email, @appointment_guests_list, :email, :email, {}, {:multiple => true }) %>
             <% end %>
-        </datalist>
-        <br>
-
-        <% end %>
+        </div>
     </div>
 
     <div class="actions">

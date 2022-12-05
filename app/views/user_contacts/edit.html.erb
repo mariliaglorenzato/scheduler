@@ -11,12 +11,11 @@
     <h2>Edit </h2>
 
     <%= form_for([@resource, @user_contact]) do |f| %>
-    <% if @user_contact.errors.any? %>
-    <ul>
-        <% @user_contact.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-    </ul>
+    <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
     <div class="field">

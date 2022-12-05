@@ -32,6 +32,7 @@
             <% end %>
         </ul>
     </nav>
+
     <div class="container">
         <div class="container-fluid">
             <div class="row">
@@ -54,22 +55,6 @@
         </div>
         <div class="container">
             <%= yield %>
-        </div>
-    </div>
-
-    <div class="container">
-        <br>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <% if notice %>
-                    <p class="alert alert-success"><%= notice %></p>
-                    <% end %>
-                    <% if alert %>
-                    <p class="alert alert-danger"><%= alert %></p>
-                    <% end %>
-                </div>
-            </div>
         </div>
     </div>
 

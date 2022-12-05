@@ -3,6 +3,8 @@ class Appointment < ApplicationRecord
     has_many :appointment_guests
     accepts_nested_attributes_for :appointment_guests, allow_destroy: true
 
+    validates :end_date, comparison: { greater_than: :start_date}
+
     def appointment_guests_attributes=(appointment_guests_attributes)
         appointment_guests_attributes.map do |index, hash|
             AppointmentGuest.find_or_create_by(appointment: self, email: hash["email"])

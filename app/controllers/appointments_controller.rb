@@ -9,6 +9,7 @@ class AppointmentsController < ApplicationController
 
     def new
       @appointment = Appointment.new
+      @appointment_guests_list = user.user_contacts.all     
     end
 
     def edit
@@ -18,18 +19,21 @@ class AppointmentsController < ApplicationController
     def create
       @appointment = user.appointments.create(params_to_create)
       
-      if @appointment.save
-        redirect_to appointments_path
+      if @appointment.errors[:end_date].present?
+        flash[:alert] = "Data final anterior a data inicial"
+        render :new, status: 422 
       else
-        render "new", @appointment.errors
+        redirect_to appointments_path
       end
+      
     end
-  
     def update
       @appointment = Appointment.find(params[:id])
-      @appointment.update!(params_to_update)
-
-      redirect_to appointments_path
+      if !@appointment.update!(params_to_update)
+        render :show, status: 422, alert: "Data final anterior a data inicial"
+      else
+        redirect_to appointments_path
+      end
     end
 
     def destroy
@@ -47,7 +51,7 @@ class AppointmentsController < ApplicationController
   
       def params_to_create
         params.require(:appointment).permit(
-          :title, :description, :locale, :start_date, :end_date, appointment_guests_attributes: [:email]
+          :title, :description, :locale, :start_date, :end_date, appointment_guests: []
         )
       end
 
