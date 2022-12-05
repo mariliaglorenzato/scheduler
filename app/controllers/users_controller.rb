@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to @user
     else
-      render "error"
+      redirect_to home_path, status: 422, alert: @user.errors.message
     end
   end
 

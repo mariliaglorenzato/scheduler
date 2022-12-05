@@ -44,20 +44,6 @@
             <%= f.text_field :locale, autofocus: true, autocomplete: "locale" %>
         </div>
     </div>
-    <div class="form-group">
-        <div class="form-group field">
-            <%= f.fields_for :appointment_guests, @appointment.appointment_guests.build do |t| %>
-            <%= t.label :email %><br>
-            <%= t.text_field :email, list: "appointment_guests_autocomplete" %>
-            <datalist id="appointment_guests_autocomplete">
-                <% AppointmentGuest.all.each do |guest| %>
-                <option value="<%= guest.email %>"></option>
-                <% end %>
-            </datalist>
-            <br />
-            <% end %>
-        </div>
-    </div>
     <br />
     <div class="actions">
         <br />

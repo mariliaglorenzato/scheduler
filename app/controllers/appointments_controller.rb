@@ -15,7 +15,7 @@ class AppointmentsController < ApplicationController
     def edit
       @appointment = Appointment.find(params[:id])
     end
-
+    
     def create
       @appointment = user.appointments.create(params_to_create)
       
@@ -45,13 +45,13 @@ class AppointmentsController < ApplicationController
     private
       def params_to_update
         params.require(:appointment).permit(
-          :title, :description, :locale, :start_date, :end_date, appointment_guests_attributes: [:email]
+          :title, :description, :locale, :start_date, :end_date
         )
       end
   
       def params_to_create
         params.require(:appointment).permit(
-          :title, :description, :locale, :start_date, :end_date, appointment_guests: []
+          :title, :description, :locale, :start_date, :end_date
         )
       end
 

@@ -7,12 +7,6 @@
   </div>
 
   <%= form_for([@resource, @user_contact]) do |f| %>
-  <% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
 
   <div class="form-group field">
     <%= f.label :email %><br />
