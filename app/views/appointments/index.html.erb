@@ -13,7 +13,7 @@
 
         <% appointments.each do |appointment| %>
         <div>
-            <%= link_to appointment.title, edit_appointment_path(appointment) %>
+            [<%= link_to appointment.title, edit_appointment_path(appointment) %>]
         </div>
         <% end %>
         <% end %>

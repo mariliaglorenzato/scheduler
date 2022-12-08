@@ -26,7 +26,7 @@
   <div class="form-group">
     <div class="form-group field">
       <p>User groups</p>
-      <%= collection_select(:user_contact_groups, :group_id, Group.all, :id, :name, {}, {:prompt => true, :multiple => true, :size => 5  }) %>
+      <%= collection_select(:user_contact_group, :contact_group_id, ContactGroup.all, :id, :name, {}, {:prompt => true, :multiple => true, :size => 5  }) %>
     </div>
   </div>
 

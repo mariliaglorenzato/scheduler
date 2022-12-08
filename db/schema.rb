@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_121206) do
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
-  create_table "groups", force: :cascade do |t|
+  create_table "contact_groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_121206) do
 
   create_table "user_contact_groups", force: :cascade do |t|
     t.integer "user_contact_id", null: false
-    t.integer "group_id", null: false
+    t.integer "contact_group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

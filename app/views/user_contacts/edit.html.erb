@@ -11,12 +11,6 @@
     <h2>Edit </h2>
 
     <%= form_for([@resource, @user_contact]) do |f| %>
-    <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-    <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
 
     <div class="field">
         <%= f.label :email %><br />
@@ -34,8 +28,8 @@
     </div>
 
     <div class="field">
-        <% f.label :name %><br />
-        <%= collection_select(:user_contact_groups, :group_ids, Group.all, :id, :name, {}, {:prompt => true, :multiple => true, :size => 5  }) %>
+        <p>User groups</p>
+        <%= collection_select(:user_contact_group, :contact_group_id, ContactGroup.all, :id_as_string, :name, {:selected => @user_contact.user_contact_groups.map(&:contact_group_id)}, {:multiple => true, :size => 4}) %>
     </div>
 
 

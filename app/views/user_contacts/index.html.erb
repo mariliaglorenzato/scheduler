@@ -4,35 +4,47 @@
     <div class="container">
       <h1>Contacts</h1>
       <%= link_to "New User Contact", new_user_contact_path %>
+
     </div>
   </div>
   <div class="row">
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">name</th>
-          <th scope="col">email</th>
-          <th scope="col">options</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @user_contacts.each do |user_contact| %>
-        <tr>
-          <th scope="row"><%= user_contact.id %></th>
-          <td><%= user_contact.name %></td>
-          <td><%= user_contact.email %></td>
-          <td>
-            <div>
-              <%= link_to "Edit", edit_user_contact_path(user_contact), :class => "link-success" %>
-              <%= link_to "Destroy", user_contact, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, :class => "link-danger" %>
-            </div>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="col-md-12">
+      <br />
+    </div>
   </div>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">name</th>
+        <th scope="col">email</th>
+        <th scope="col">groups
+          <%= link_to user_contact_groups_path do %>
+          <i class="bi bi-arrow-up-right-square"></i>
+          <% end %>
+        </th>
+        <th scope="col">options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user_contacts.each do |user_contact| %>
+      <tr>
+        <th scope="row"><%= user_contact.id %></th>
+        <td><%= user_contact.name %></td>
+        <td><%= user_contact.email %></td>
+        <td><%= user_contact.group_name_list.map { |value| value } %></td>
+        <td>
+          <div>
+            <%= link_to "Edit", edit_user_contact_path(user_contact), :class => "link-success" %>
+            <%= link_to "Destroy", user_contact, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, :class => "link-danger" %>
+          </div>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>
 </div>
 </div>
 <br>
