@@ -5,6 +5,6 @@ class UserContact < ApplicationRecord
     has_many :contact_groups, :through => :user_contact_groups
 
     def group_name_list
-        self.user_contact_groups.map { |g| ContactGroup.find(g.contact_group_id).name }
+        current_user.user_contact_groups.map { |g| ContactGroup.find(g.contact_group_id).name }
     end
 end
